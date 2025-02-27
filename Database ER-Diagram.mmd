@@ -1,0 +1,161 @@
+erDiagram
+    User {
+        int User_ID PK
+        varchar Firstname
+        varchar Name
+        varchar Username
+        varchar Password
+        varchar E-Mail
+        varchar Telephone
+        text Additional_Description
+        boolean Driver_s_License_Verified
+        varchar Profile_Picture
+        datetime Creation_Date
+        int Address_ID FK
+        int Role_ID FK
+        int Status_ID FK
+    }
+
+    Vehicle_Mapping {
+        int Vehicle_ID PK
+        decimal Fuel_Milage
+        text Additional_Info
+        varchar License_Plate
+        int User_ID FK
+        int Status_ID FK
+    }
+
+    Status {
+        int Status_ID PK
+        varchar Status_Description
+    }
+
+    Roles {
+        int Role_ID PK
+        varchar Name
+        text Description
+    }
+
+    Address {
+        int Address_ID PK
+        varchar City
+        varchar Postal_Code
+        varchar Street
+        varchar Country
+        varchar Country_Code
+        varchar Region
+        varchar State
+        double Longitude
+        double Latitude
+        varchar Address_Line1
+        varchar Address_Line2
+        int Status_ID FK
+    }
+
+    Vehicle {
+        int Vehicle_ID PK
+        varchar Model
+        int Seats
+        int Year_of_manufacture
+        varchar Manufacturer_Name
+        int Status_ID FK
+    }
+
+    Event {
+        int Event_ID PK
+        varchar Type
+        int Free_Seats
+        text Description
+        datetime Start_Timestamp
+        int Schedule_ID FK
+        int Status_ID FK
+    }
+
+    Event_Members {
+        int Member_ID PK
+        varchar Type
+        int User_ID FK
+        int Event_ID FK
+        int Status_ID FK
+    }
+
+    Chat_Message {
+        int Chat_Message_ID PK
+        text Message
+        datetime Timestamp
+        int User_ID FK
+        int Event_ID FK
+    }
+
+    Invites {
+        int Invite_ID PK
+        varchar Confirmation_Status
+        boolean Is_Request
+        int Event_ID FK
+        int User_ID FK
+    }
+
+    Notification {
+        int Notification_ID PK
+        boolean Read
+        text Message
+        varchar Entity_Type
+        int Entity_ID FK
+        int User_ID FK
+    }
+
+    Stops {
+        int Stop_ID PK
+        int Stop_sequence_number
+        int Address_ID FK
+        int Event_ID FK
+    }
+
+    Schedule {
+        int Schedule_ID PK
+        varchar Cron_Schedule
+        int User_ID FK
+    }
+
+    Audit {
+        int Audit_ID PK
+        text Message
+        varchar Entity_Type
+        datetime Timestamp
+        int Entity_ID FK
+        int User_ID FK
+    }
+
+    Rating {
+        int Rating_ID PK
+        text Rating_Text
+        int Rating_Value
+        int Rated_user_ID FK
+        int User_who_rated_ID FK
+        int Status_ID FK
+    }
+
+    User ||--o{ Address : "has home"
+    User }|--o{ Vehicle_Mapping : owns
+    User }|--o{ Roles : has
+    User }|--o{ Status : is
+    Vehicle_Mapping }|--o{ Status : is
+    Address }|--o{ Status : is
+    Vehicle }|--o{ Status : "is of"
+    Event }|--o{ Schedule : "part of"
+    Event }|--o{ Status : is
+    Event_Members }|--|{ Event : "part of"
+    Event_Members }|--|{ User : "member of"
+    Event_Members }|--o{ Status : is
+    Chat_Message }|--|{ User : "sent by"
+    Chat_Message }|--|{ Event : "in"
+    Invites }|--|{ Event : "for"
+    Invites }|--|{ User : "to/from"
+    Notification }|--|{ User : "for"
+    Stops ||--|{ Address : "at"
+    Stops ||--|{ Event : "part of"
+    Schedule }|--|{ User : "created by"
+    Audit }|--o{ User : "by"
+    Rating }|--|{ User : "of"
+    Rating }|--|{ User : "by"
+    Rating }|--o{ Status : is
