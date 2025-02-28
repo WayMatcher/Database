@@ -78,7 +78,7 @@
 Free Seats will be `NULL` when the Event is created by a passenger (=> Type == `Passenger`).
 Free Seats can be defined by the Pilot, if it's a Pilot created Event.
 
-## Event Members
+## Event Member
 
 - **Member ID**
 - Type (Pilot (= Owner/Creator) or Passenger)
@@ -96,7 +96,7 @@ Free Seats can be defined by the Pilot, if it's a Pilot created Event.
 
 Chat messages can only be sent in Chats that are only available in Events (Therfore the foregin key of Event ID exists here)
 
-## Invites
+## Invite
 
 - **Invite ID**
 - Confirmation Status (Accepted, Declined and Pending)
@@ -113,7 +113,7 @@ Chat messages can only be sent in Chats that are only available in Events (Therf
 - *Entity ID* (What exactly was affected)
 - *User ID* (The user who got the notification)
 
-## Stops
+## Stop
 
 - **Stop ID**
 - Stop sequence number
