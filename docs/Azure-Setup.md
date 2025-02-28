@@ -9,6 +9,7 @@
       - [Security Settings](#security-settings)
       - [Additional Settings](#additional-settings)
       - [Summary](#summary)
+    - [User Permissions](#user-permissions)
 
 ## Create SQL Database Server
 
@@ -44,3 +45,7 @@ Hier wurde in DTU basierter Server ausgewählt
 
 ![Summary A](images/azure-setup/summaryA.png)
 ![Summary B](images/azure-setup/summaryB.png)
+
+### User Permissions
+
+![Added Owner Permission](images/azure-setup/owner-permission.png)
