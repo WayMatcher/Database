@@ -1,3 +1,5 @@
+ER-Diagram
+```mermaid
 erDiagram
     User {
         int User_ID PK
@@ -8,8 +10,8 @@ erDiagram
         varchar E-Mail
         varchar Telephone
         text Additional_Description
-        boolean Driver_s_License_Verified
-        varchar Profile_Picture
+        boolean License_Verified
+        blob Profile_Picture
         datetime Creation_Date
         int Address_ID FK
         int Role_ID FK
@@ -17,10 +19,11 @@ erDiagram
     }
 
     Vehicle_Mapping {
-        int Vehicle_ID PK
+        int Vehicle_Mapping_ID PK
         decimal Fuel_Milage
         text Additional_Info
         varchar License_Plate
+        int Vehicle_ID FK
         int User_ID FK
         int Status_ID FK
     }
@@ -30,7 +33,7 @@ erDiagram
         varchar Status_Description
     }
 
-    Roles {
+    Role {
         int Role_ID PK
         varchar Name
         text Description
@@ -53,7 +56,7 @@ erDiagram
     }
 
     Vehicle {
-        int Vehicle_ID PK
+        int Vehicle_Mapping_ID PK
         varchar Model
         int Seats
         int Year_of_manufacture
@@ -71,7 +74,7 @@ erDiagram
         int Status_ID FK
     }
 
-    Event_Members {
+    Event_Member {
         int Member_ID PK
         varchar Type
         int User_ID FK
@@ -87,7 +90,7 @@ erDiagram
         int Event_ID FK
     }
 
-    Invites {
+    Invite {
         int Invite_ID PK
         varchar Confirmation_Status
         boolean Is_Request
@@ -104,7 +107,7 @@ erDiagram
         int User_ID FK
     }
 
-    Stops {
+    Stop {
         int Stop_ID PK
         int Stop_sequence_number
         int Address_ID FK
@@ -135,27 +138,28 @@ erDiagram
         int Status_ID FK
     }
 
-    User ||--o{ Address : "has home"
     User }|--o{ Vehicle_Mapping : owns
-    User }|--o{ Roles : has
-    User }|--o{ Status : is
-    Vehicle_Mapping }|--o{ Status : is
-    Address }|--o{ Status : is
-    Vehicle }|--o{ Status : "is of"
-    Event }|--o{ Schedule : "part of"
-    Event }|--o{ Status : is
-    Event_Members }|--|{ Event : "part of"
-    Event_Members }|--|{ User : "member of"
-    Event_Members }|--o{ Status : is
-    Chat_Message }|--|{ User : "sent by"
-    Chat_Message }|--|{ Event : "in"
-    Invites }|--|{ Event : "for"
-    Invites }|--|{ User : "to/from"
-    Notification }|--|{ User : "for"
-    Stops ||--|{ Address : "at"
-    Stops ||--|{ Event : "part of"
-    Schedule }|--|{ User : "created by"
-    Audit }|--o{ User : "by"
-    Rating }|--|{ User : "of"
-    Rating }|--|{ User : "by"
-    Rating }|--o{ Status : is
+    User ||--o{ Event_Member : "member of"
+    User ||--o{ Chat_Message : "sent by"
+    User ||--o{ Invite : invited
+    User ||--o{ Notification : notified
+    User ||--o{ Schedule : "created by"
+    User ||--o{ Audit : "did"
+    User ||--o{ Rating : "received"
+    Rating }o--|| User : "rated"
+    Vehicle_Mapping }o--|| Vehicle : "is"
+    Vehicle_Mapping }o--|| Status : "is"
+    Status ||--o{ Address : "is"
+    Status ||--o{ Vehicle : "is"
+    Status ||--o{ Event : "is"
+    Status ||--o{ Event_Member : "is"
+    Status ||--o{ Rating : "is"
+    Role ||--o{ User : "has"
+    Address ||--o{ Stop : "is a stop at"
+    Address ||--o{ User : "lives at"
+    Event ||--o{ Event_Member : "takes part in"
+    Event ||--o{ Chat_Message : "sent in"
+    Event ||--o{ Invite : "created for"
+    Event ||--|{ Stop : "has stops"
+    Schedule |o--o{ Event : "has"
+```
