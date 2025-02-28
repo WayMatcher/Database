@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "eMkWsna26cI=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\WayMatcher.sqlproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\niklas.wonnebauer\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\niklas.wonnebauer\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net46\\1.0.0\\microsoft.netframework.referenceassemblies.net46.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

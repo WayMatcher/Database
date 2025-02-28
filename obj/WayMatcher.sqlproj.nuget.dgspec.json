@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\WayMatcher.sqlproj": {}
+  },
+  "projects": {
+    "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\WayMatcher.sqlproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\WayMatcher.sqlproj",
+        "projectName": "WayMatcher",
+        "projectPath": "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\WayMatcher.sqlproj",
+        "packagesPath": "C:\\Users\\niklas.wonnebauer\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\niklas.wonnebauer\\OneDrive - Landesberufsschule 4\\Documents\\GitHub\\Database\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "UsingMicrosoftNETSdk": false,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\niklas.wonnebauer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net46"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net46": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5128"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net46": {
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}
