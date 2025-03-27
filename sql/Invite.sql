@@ -1,15 +1,14 @@
-DROP TABLE IF EXISTS "Invite";
-
-CREATE TABLE "WayMatcher"."Invite" (
-    "Invite_ID" int IDENTITY(1, 1) NOT NULL,
-    "ConfirmationStatus_ID" int,
+DROP TABLE IF EXISTS "WayMatcher"."Invite";
+CREATE TABLE "WayMatcher"."Invite"(
+    "Invite_ID" int IDENTITY(1,1) NOT NULL,
+    "Status_ID" int NOT NULL,
     "Is_Request" bit,
     "Event_ID" int,
     "User_ID" int,
-    PRIMARY KEY (Invite_ID),
-    CONSTRAINT FK__Invite__Confirma__6462DE5A FOREIGN key ("ConfirmationStatus_ID") REFERENCES "ConfirmationStatus" ("ConfirmationStatus_ID"),
-    CONSTRAINT FK__Invite__Event_ID__65570293 FOREIGN key ("Event_ID") REFERENCES "Event" ("Event_ID"),
-    CONSTRAINT FK__Invite__User_ID__664B26CC FOREIGN key ("User_ID") REFERENCES "User" ("User_ID")
+    PRIMARY KEY(Invite_ID),
+    CONSTRAINT FK__Invite__Status_ID__664B26CC FOREIGN key("Status_ID") REFERENCES "Status"("Status_ID"),
+    CONSTRAINT FK__Invite__Event_ID__65570293 FOREIGN key("Event_ID") REFERENCES "Event"("Event_ID"),
+    CONSTRAINT FK__Invite__User_ID__664B26CC FOREIGN key("User_ID") REFERENCES "User"("User_ID")
 );
 
 DROP TRIGGER IF EXISTS WayMatcher.trg_Invite_Audit;

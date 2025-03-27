@@ -1,5 +1,4 @@
-DROP PROCEDURE IF EXISTS WayMatcher.LogAuditEntry;
-
+DROP PROCEDURE IF EXISTS "WayMatcher"."LogAuditEntry";
 CREATE PROCEDURE WayMatcher.LogAuditEntry
     @Message NVARCHAR(MAX),
     @Entity_Type NVARCHAR(255),

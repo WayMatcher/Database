@@ -1,13 +1,11 @@
-DROP TABLE IF EXISTS "Status";
-
-CREATE TABLE "WayMatcher"."Status" (
-    "Status_ID" int IDENTITY(1, 1) NOT NULL,
+DROP TABLE IF EXISTS "WayMatcher"."Status";
+CREATE TABLE "WayMatcher"."Status"(
+    "Status_ID" int IDENTITY(1,1) NOT NULL,
     "Status_Description" varchar(255) NOT NULL,
-    PRIMARY KEY (Status_ID)
+    PRIMARY KEY(Status_ID)
 );
 
-DROP TRIGGER IF EXISTS WayMatcher.trg_Status_Audit;
-
+DROP TRIGGER IF EXISTS "WayMatcher"."trg_Status_Audit";
 CREATE TRIGGER trg_Status_Audit
 ON WayMatcher.Status
 AFTER UPDATE, DELETE

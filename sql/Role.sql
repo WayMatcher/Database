@@ -1,14 +1,12 @@
-DROP TABLE IF EXISTS "Role";
-
-CREATE TABLE "WayMatcher"."Role" (
-    "Role_ID" int IDENTITY(1, 1) NOT NULL,
+DROP TABLE IF EXISTS "WayMatcher"."Role";
+CREATE TABLE "WayMatcher"."Role"(
+    "Role_ID" int IDENTITY(1,1) NOT NULL,
     "Name" varchar(255) NOT NULL,
     "Description" varchar(max),
-    PRIMARY KEY (Role_ID)
+    PRIMARY KEY(Role_ID)
 );
 
-DROP TRIGGER IF EXISTS WayMatcher.trg_Role_Audit;
-
+DROP TRIGGER IF EXISTS "WayMatcher"."trg_Role_Audit";
 CREATE TRIGGER trg_Role_Audit
 ON WayMatcher.Role
 AFTER UPDATE, DELETE

@@ -1,7 +1,6 @@
-DROP TABLE IF EXISTS "Address";
-
-CREATE TABLE "WayMatcher"."Address" (
-    "Address_ID" int IDENTITY(1, 1) NOT NULL,
+DROP TABLE IF EXISTS "WayMatcher"."Address";
+CREATE TABLE "WayMatcher"."Address"(
+    "Address_ID" int IDENTITY(1,1) NOT NULL,
     "City" varchar(255),
     "Postal_Code" varchar(20),
     "Street" varchar(255),
@@ -14,12 +13,11 @@ CREATE TABLE "WayMatcher"."Address" (
     "Address_Line1" varchar(255),
     "Address_Line2" varchar(255),
     "Status_ID" int,
-    PRIMARY KEY (Address_ID),
-    CONSTRAINT FK__Address__Status___3A6CA48E FOREIGN key ("Status_ID") REFERENCES "Status" ("Status_ID")
+    PRIMARY KEY(Address_ID),
+    CONSTRAINT FK__Address__Status___3A6CA48E FOREIGN key("Status_ID") REFERENCES "Status"("Status_ID")
 );
 
-DROP TRIGGER IF EXISTS WayMatcher.trg_Address_Audit;
-
+DROP TRIGGER IF EXISTS "WayMatcher"."trg_Address_Audit";
 CREATE TRIGGER trg_Address_Audit
 ON WayMatcher.Address
 AFTER UPDATE, DELETE

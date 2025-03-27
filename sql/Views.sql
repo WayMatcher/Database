@@ -1,7 +1,6 @@
-DROP VIEW IF EXISTS "vw_EventDetails";
-
+DROP VIEW IF EXISTS "WayMatcher"."vw_EventDetails";
 CREATE VIEW vw_EventDetails AS
-SELECT
+SELECT 
     e.Event_ID,
     e.EventType_ID,
     e.Free_Seats,
@@ -37,26 +36,25 @@ SELECT
     i.Is_Request,
     i.Event_ID AS InviteEventId,
     i.User_ID AS InviteUserId
-FROM
+FROM 
     Event e
-    LEFT JOIN Schedule s ON e.Schedule_ID = s.Schedule_ID
-    LEFT JOIN Stop st ON e.Event_ID = st.Event_ID
-    LEFT JOIN Address a ON st.Address_ID = a.Address_ID
-    LEFT JOIN Event_Member em ON e.Event_ID = em.Event_ID
-    LEFT JOIN Invite i ON e.Event_ID = i.Event_ID;
+LEFT JOIN 
+    Schedule s ON e.Schedule_ID = s.Schedule_ID
+LEFT JOIN 
+    Stop st ON e.Event_ID = st.Event_ID
+LEFT JOIN 
+    Address a ON st.Address_ID = a.Address_ID
+LEFT JOIN 
+    Event_Member em ON e.Event_ID = em.Event_ID
+LEFT JOIN 
+    Invite i ON e.Event_ID = i.Event_ID;;
 
-DROP VIEW IF EXISTS "vw_PassengerEvents";
+DROP VIEW IF EXISTS "WayMatcher"."vw_PassengerEvents";
+CREATE VIEW WayMatcher.vw_PassengerEvents
+AS
+SELECT * FROM WayMatcher.Event WHERE "EventType_ID" = 2;
 
-CREATE VIEW WayMatcher.vw_PassengerEvents AS
-SELECT *
-FROM WayMatcher.Event
-WHERE
-    "EventType_ID" = 2;
-
-DROP VIEW IF EXISTS "vw_PilotEvents";
-
-CREATE VIEW WayMatcher.vw_PilotEvents AS
-SELECT *
-FROM WayMatcher.Event
-WHERE
-    "EventType_ID" = 1;
+DROP VIEW IF EXISTS "WayMatcher"."vw_PilotEvents";
+CREATE VIEW WayMatcher.vw_PilotEvents
+AS
+SELECT * FROM WayMatcher.Event WHERE "EventType_ID" = 1;

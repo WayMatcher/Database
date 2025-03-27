@@ -1,19 +1,17 @@
-DROP TABLE IF EXISTS "Event_Member";
-
-CREATE TABLE "WayMatcher"."Event_Member" (
-    "Member_ID" int IDENTITY(1, 1) NOT NULL,
+DROP TABLE IF EXISTS "WayMatcher"."Event_Member";
+CREATE TABLE "WayMatcher"."Event_Member"(
+    "Member_ID" int IDENTITY(1,1) NOT NULL,
     "EventMemberType_ID" int,
     "User_ID" int,
     "Event_ID" int,
     "Status_ID" int,
-    PRIMARY KEY (Member_ID),
-    CONSTRAINT FK__Event_Mem__User___58F12BAE FOREIGN key ("User_ID") REFERENCES "User" ("User_ID"),
-    CONSTRAINT FK__Event_Mem__Event__59E54FE7 FOREIGN key ("Event_ID") REFERENCES "Event" ("Event_ID"),
-    CONSTRAINT FK__Event_Mem__Statu__5AD97420 FOREIGN key ("Status_ID") REFERENCES "Status" ("Status_ID")
+    PRIMARY KEY(Member_ID),
+    CONSTRAINT FK__Event_Mem__User___58F12BAE FOREIGN key("User_ID") REFERENCES "User"("User_ID"),
+    CONSTRAINT FK__Event_Mem__Event__59E54FE7 FOREIGN key("Event_ID") REFERENCES "Event"("Event_ID"),
+    CONSTRAINT FK__Event_Mem__Statu__5AD97420 FOREIGN key("Status_ID") REFERENCES "Status"("Status_ID")
 );
 
-DROP TRIGGER IF EXISTS WayMatcher.trg_Event_Member_Audit;
-
+DROP TRIGGER IF EXISTS "WayMatcher"."trg_Event_Member_Audit";
 CREATE TRIGGER trg_Event_Member_Audit
 ON WayMatcher.Event_Member
 AFTER UPDATE, DELETE
