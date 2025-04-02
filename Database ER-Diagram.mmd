@@ -69,11 +69,6 @@ erDiagram
           int User_ID "FK"
 }
 
-"dbo.EventType" {
-    int EventType_ID "PK"
-          varchar(50) Name ""
-}
-
 "dbo.Event" {
     int Event_ID "PK"
           int EventType_ID "FK"
@@ -82,11 +77,6 @@ erDiagram
           datetime2 Start_Timestamp ""
           int Schedule_ID "FK"
           int Status_ID "FK"
-}
-
-"dbo.EventMemberType" {
-    int EventMemberType_ID "PK"
-          varchar(50) Name ""
 }
 
 "dbo.Event_Member" {
@@ -103,11 +93,6 @@ erDiagram
           datetime2 Timestamp ""
           int User_ID "FK"
           int Event_ID "FK"
-}
-
-"dbo.ConfirmationStatus" {
-    int ConfirmationStatus_ID "PK"
-          varchar(50) Name ""
 }
 
 "dbo.Invite" {
@@ -161,16 +146,13 @@ erDiagram
 "dbo.Vehicle_Mapping" |o--|{ "dbo.User": "User_ID"
 "dbo.Vehicle_Mapping" |o--|{ "dbo.Status": "Status_ID"
 "dbo.Schedule" |o--|{ "dbo.User": "User_ID"
-"dbo.Event" |o--|{ "dbo.EventType": "EventType_ID"
 "dbo.Event" |o--|{ "dbo.Schedule": "Schedule_ID"
 "dbo.Event" |o--|{ "dbo.Status": "Status_ID"
-"dbo.Event_Member" |o--|{ "dbo.EventMemberType": "EventMemberType_ID"
 "dbo.Event_Member" |o--|{ "dbo.User": "User_ID"
 "dbo.Event_Member" |o--|{ "dbo.Event": "Event_ID"
 "dbo.Event_Member" |o--|{ "dbo.Status": "Status_ID"
 "dbo.Chat_Message" |o--|{ "dbo.User": "User_ID"
 "dbo.Chat_Message" |o--|{ "dbo.Event": "Event_ID"
-"dbo.Invite" |o--|{ "dbo.ConfirmationStatus": "ConfirmationStatus_ID"
 "dbo.Invite" |o--|{ "dbo.Event": "Event_ID"
 "dbo.Invite" |o--|{ "dbo.User": "User_ID"
 "dbo.Notification" |o--|{ "dbo.User": "User_ID"
