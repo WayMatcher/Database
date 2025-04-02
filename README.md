@@ -104,7 +104,172 @@ Für Setup siehe [Azure-Setup.md](docs/Azure-Setup.md)
 
 ## **2. ER-Diagramm**
 
-bild von ERD
+```mermaid
+erDiagram
+
+"dbo.Status" {
+    int Status_ID "PK"
+          varchar(255) Status_Description ""
+}
+
+"dbo.Role" {
+    int Role_ID "PK"
+          varchar(255) Name ""
+          varchar(MAX) Description ""
+}
+
+"dbo.Address" {
+    int Address_ID "PK"
+          varchar(255) City ""
+          varchar(20) Postal_Code ""
+          varchar(255) Street ""
+          varchar(255) Country ""
+          varchar(10) Country_Code ""
+          varchar(255) Region ""
+          varchar(255) State ""
+          float Longitude ""
+          float Latitude ""
+          varchar(255) Address_Line1 ""
+          varchar(255) Address_Line2 ""
+          int Status_ID "FK"
+}
+
+"dbo.User" {
+    int User_ID "PK"
+          varchar(255) Firstname ""
+          varchar(255) Name ""
+          varchar(255) Username ""
+          varchar(255) Password ""
+          varchar(255) E-Mail ""
+          varchar(20) Telephone ""
+          varchar(MAX) Additional_Description ""
+          bit License_Verified ""
+          varbinary(-1) Profile_Picture ""
+          datetime2 Creation_Date ""
+          int Address_ID "FK"
+          int Role_ID "FK"
+          int Status_ID "FK"
+
+}
+"dbo.Vehicle" {
+    int Vehicle_ID "PK"
+          varchar(255) Model ""
+          int Seats ""
+          int Year_of_manufacture ""
+          varchar(255) Manufacturer_Name ""
+          int Status_ID "FK"
+}
+
+"dbo.Vehicle_Mapping" {
+    int Vehicle_Mapping_ID "PK"
+          decimal Fuel_Milage ""
+          varchar(MAX) Additional_Info ""
+          varchar(20) License_Plate ""
+          int Vehicle_ID "FK"
+          int User_ID "FK"
+          int Status_ID "FK"
+}
+
+"dbo.Schedule" {
+    int Schedule_ID "PK"
+          varchar(255) Cron_Schedule ""
+          int User_ID "FK"
+}
+
+"dbo.Event" {
+    int Event_ID "PK"
+          int EventType_ID "FK"
+          int Free_Seats ""
+          varchar(MAX) Description ""
+          datetime2 Start_Timestamp ""
+          int Schedule_ID "FK"
+          int Status_ID "FK"
+}
+
+"dbo.Event_Member" {
+    int Member_ID "PK"
+          int EventMemberType_ID "FK"
+          int User_ID "FK"
+          int Event_ID "FK"
+          int Status_ID "FK"
+}
+
+"dbo.Chat_Message" {
+    int Chat_Message_ID "PK"
+          varchar(MAX) Message ""
+          datetime2 Timestamp ""
+          int User_ID "FK"
+          int Event_ID "FK"
+}
+
+"dbo.Invite" {
+    int Invite_ID "PK"
+          int ConfirmationStatus_ID "FK"
+          bit Is_Request ""
+          int Event_ID "FK"
+          int User_ID "FK"
+}
+
+"dbo.Notification" {
+    int Notification_ID "PK"
+          bit Read ""
+          varchar(MAX) Message ""
+          varchar(255) Entity_Type ""
+          int Entity_ID ""
+          int User_ID "FK"
+}
+
+"dbo.Stop" {
+    int Stop_ID "PK"
+          int Stop_sequence_number ""
+          int Address_ID "FK"
+          int Event_ID "FK"
+}
+
+"dbo.Audit" {
+    int Audit_ID "PK"
+          varchar(MAX) Message ""
+          varchar(255) Entity_Type ""
+          datetime2 Timestamp ""
+          int Entity_ID ""
+          int User_ID "FK"
+}
+
+"dbo.Rating" {
+    int Rating_ID "PK"
+          varchar(MAX) Rating_Text ""
+          int Rating_Value ""
+          int Rated_user_ID "FK"
+          int User_who_rated_ID "FK"
+          int Status_ID "FK"
+}
+
+"dbo.Address" |o--|{ "dbo.Status": "Status_ID"
+"dbo.User" |o--|{ "dbo.Address": "Address_ID"
+"dbo.User" |o--|{ "dbo.Role": "Role_ID"
+"dbo.User" |o--|{ "dbo.Status": "Status_ID"
+"dbo.Vehicle" |o--|{ "dbo.Status": "Status_ID"
+"dbo.Vehicle_Mapping" |o--|{ "dbo.Vehicle": "Vehicle_ID"
+"dbo.Vehicle_Mapping" |o--|{ "dbo.User": "User_ID"
+"dbo.Vehicle_Mapping" |o--|{ "dbo.Status": "Status_ID"
+"dbo.Schedule" |o--|{ "dbo.User": "User_ID"
+"dbo.Event" |o--|{ "dbo.Schedule": "Schedule_ID"
+"dbo.Event" |o--|{ "dbo.Status": "Status_ID"
+"dbo.Event_Member" |o--|{ "dbo.User": "User_ID"
+"dbo.Event_Member" |o--|{ "dbo.Event": "Event_ID"
+"dbo.Event_Member" |o--|{ "dbo.Status": "Status_ID"
+"dbo.Chat_Message" |o--|{ "dbo.User": "User_ID"
+"dbo.Chat_Message" |o--|{ "dbo.Event": "Event_ID"
+"dbo.Invite" |o--|{ "dbo.Event": "Event_ID"
+"dbo.Invite" |o--|{ "dbo.User": "User_ID"
+"dbo.Notification" |o--|{ "dbo.User": "User_ID"
+"dbo.Stop" |o--|{ "dbo.Address": "Address_ID"
+"dbo.Stop" |o--|{ "dbo.Event": "Event_ID"
+"dbo.Audit" |o--|{ "dbo.User": "User_ID"
+"dbo.Rating" |o--|{ "dbo.User": "User_ID"
+"dbo.Rating" |o--|{ "dbo.User": "User_ID"
+"dbo.Rating" |o--|{ "dbo.Status": "Status_ID"
+```
 
 ## **3. Entitäten der Datenbank**
 
